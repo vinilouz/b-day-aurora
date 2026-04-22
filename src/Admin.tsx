@@ -8,21 +8,35 @@ export default function Admin() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Simula carregamento do banco de dados local
-    setTimeout(() => {
-      let data = JSON.parse(localStorage.getItem('rsvps') || '[]');
-      
-      const removeName = searchParams.get('remove');
-      if (removeName) {
-        data = data.filter((r: { name: string }) => r.name.toLowerCase().trim() !== removeName.toLowerCase().trim());
-        localStorage.setItem('rsvps', JSON.stringify(data));
-        // Remove o parametro da URL para não rodar novamente ao recarregar a tela
-        navigate('/admin', { replace: true });
-      }
+    const fetchData = async () => {
+      try {
+        const removeName = searchParams.get('remove');
+        if (removeName) {
+          await fetch('/api/rsvps', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: removeName })
+          });
+          navigate('/admin', { replace: true });
+        }
 
-      setRsvps(data);
-      setLoading(false);
-    }, 500);
+        const res = await fetch('/api/rsvps');
+        const payload = await res.json();
+        
+        if (res.ok) {
+          setRsvps(Array.isArray(payload) ? payload : []);
+        } else if (payload.error === 'STORAGE_NOT_CONFIGURED') {
+          alert("Configuração Pendente: Vá na Vercel > Storage > clique em 'Redis' ou 'Upstash' para ativar o banco gratuito.");
+        } else {
+           console.error("Error fetching data");
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, [searchParams, navigate]);
 
   return (

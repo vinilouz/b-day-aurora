@@ -76,18 +76,33 @@ export default function App() {
 
     setIsSubmitting(true);
     
-    // Simula salvamento na rede (até criarmos um banco real como Firebase)
-    setTimeout(() => {
-      // Salva localmente no navegador por enquanto
-      const existing = JSON.parse(localStorage.getItem('rsvps') || '[]');
-      existing.push({ id: Date.now(), name: rsvpName, created_at: new Date().toISOString() });
-      localStorage.setItem('rsvps', JSON.stringify(existing));
+    try {
+      const res = await fetch("/api/rsvps", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: rsvpName }),
+      });
+      
+      const payload = await res.json();
 
+      if (res.ok) {
+        setIsSubmitting(false);
+        setIsModalOpen(false);
+        setIsRsvped(true);
+        triggerConfetti();
+      } else if (payload.error === 'STORAGE_NOT_CONFIGURED') {
+        alert("Configuração Pendente: O dono do site precisa clicar em 'Upstash' ou 'Redis' na aba Storage da Vercel para ligar o banco de dados.");
+        setIsSubmitting(false);
+      } else {
+        console.error("Failed to save via API");
+        alert("Falha ao se conectar com o banco de nomes.");
+        setIsSubmitting(false);
+      }
+    } catch (e) {
+      console.error(e);
+      alert("Erro na rede. Tente novamente.");
       setIsSubmitting(false);
-      setIsModalOpen(false);
-      setIsRsvped(true);
-      triggerConfetti();
-    }, 800);
+    }
   };
 
   const containerVariants = {
