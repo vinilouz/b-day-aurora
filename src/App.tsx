@@ -14,8 +14,7 @@ import {
 } from 'lucide-react';
 import React, { useState } from 'react';
 
-import imgTopCharacters from './assets/1.png';
-import imgBottomPlates from './assets/2.webp';
+import { imgTopCharacters, imgBottomPlates } from './assets/images';
 
 /**
  * @license
