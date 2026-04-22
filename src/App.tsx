@@ -14,6 +14,9 @@ import {
 } from 'lucide-react';
 import React, { useState } from 'react';
 
+import imgTopCharacters from './assets/1.png';
+import imgBottomPlates from './assets/2.webp';
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -153,18 +156,18 @@ export default function App() {
       >
         
         {/* Top Characters Image */}
-        <motion.div variants={itemVariants} className="w-full flex justify-center items-end h-[220px] mb-2 relative">
+        <motion.div variants={itemVariants} className="w-full flex justify-center items-end relative z-10 pt-4 pb-2">
           <motion.div 
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-full w-full flex justify-center z-10"
+            className="relative w-full flex justify-center"
           >
-            <img src="/1.png" alt="Personagens 3 Palavrinhas" className="max-h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)]" />
+            <img src={imgTopCharacters} alt="Personagens 3 Palavrinhas" className="w-full max-w-[400px] object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.15)]" />
           </motion.div>
         </motion.div>
 
         {/* Dynamic Curved SVG Banner */}
-        <motion.div variants={itemVariants} className="relative w-full flex justify-center -mt-12 mb-2 z-20">
+        <motion.div variants={itemVariants} className="relative w-full flex justify-center -mt-16 mb-2 z-20">
           <svg viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[115%] max-w-[550px] overflow-visible drop-shadow-[0_8px_16px_rgba(255,120,185,0.25)]">
             <defs>
               <path id="curve" d="M 120 180 Q 300 240 480 180" />
@@ -218,14 +221,14 @@ export default function App() {
         </motion.div>
 
         {/* Side-by-side Button Section */}
-        <motion.div variants={itemVariants} className="w-full flex justify-center gap-3 px-2 mb-2 relative z-20">
+        <motion.div variants={itemVariants} className="w-full flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-4 px-4 mb-3 relative z-20">
           
           {/* RSVP Button */}
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => !isRsvped && setIsModalOpen(true)}
-            className={`flex-1 max-w-[210px] h-[75px] rounded-full flex items-center p-1.5 shadow-md transition-all overflow-hidden border-[3px] ${
+            className={`w-full sm:flex-1 max-w-[280px] sm:max-w-[210px] h-[75px] rounded-full flex items-center p-1.5 shadow-md transition-all overflow-hidden border-[3px] ${
               isRsvped 
                 ? 'bg-[#FF78B9] border-[#FF78B9] shadow-pink-200' 
                 : 'bg-gradient-to-br from-[#FFFDFE] to-pink-50 border-[#FF78B9] hover:bg-pink-100'
@@ -253,7 +256,7 @@ export default function App() {
             rel="noreferrer"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.95 }}
-            className="flex-1 max-w-[210px] h-[75px] bg-gradient-to-br from-[#FFFDFE] to-pink-50 border-[3px] border-[#FF78B9] rounded-full flex items-center p-1.5 shadow-md shadow-pink-200 transition-all overflow-hidden"
+            className="w-full sm:flex-1 max-w-[280px] sm:max-w-[210px] h-[75px] bg-gradient-to-br from-[#FFFDFE] to-pink-50 border-[3px] border-[#FF78B9] rounded-full flex items-center p-1.5 shadow-md shadow-pink-200 transition-all overflow-hidden"
           >
             <div className="w-[54px] h-[54px] bg-[#FF78B9] rounded-full flex items-center justify-center text-white shrink-0">
               <MapPin size={28} strokeWidth={2.5} />
@@ -276,7 +279,7 @@ export default function App() {
 
         {/* Bottom Character Plates Image */}
         <motion.div variants={itemVariants} className="w-full flex justify-center px-4 relative z-20 pb-12">
-           <img src="/2.webp" alt={`Data: ${eventDate} às ${eventTime}`} className="w-full max-w-[420px] object-contain drop-shadow-xl" />
+           <img src={imgBottomPlates} alt={`Data: ${eventDate} às ${eventTime}`} className="w-full max-w-[420px] object-contain drop-shadow-xl" />
         </motion.div>
       </motion.div>
 
