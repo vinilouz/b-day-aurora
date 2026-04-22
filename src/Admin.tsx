@@ -5,12 +5,15 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula carregamento do banco de dados local
-    setTimeout(() => {
-      const data = JSON.parse(localStorage.getItem('rsvps') || '[]');
-      setRsvps(data);
-      setLoading(false);
-    }, 500);
+    fetch('/api/rsvps')
+      .then((res) => res.json())
+      .then((data) => {
+        setRsvps(data.rsvps || []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -20,7 +23,7 @@ export default function Admin() {
           <h1 className="text-2xl font-bold">Lista de Presença</h1>
           <p className="opacity-80">Painel de administração - Nomes confirmados</p>
         </div>
-        
+
         <div className="p-6">
           {loading ? (
             <div className="text-center py-10 opacity-60">Carregando...</div>
