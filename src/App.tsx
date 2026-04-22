@@ -161,33 +161,35 @@ export default function App() {
         </motion.div>
 
         {/* Dynamic Curved SVG Banner */}
-        <motion.div variants={itemVariants} className="relative w-full flex justify-center -mt-16 mb-2 z-20">
-          <svg viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[115%] max-w-[550px] overflow-visible drop-shadow-[0_8px_16px_rgba(255,120,185,0.25)]">
+        <motion.div variants={itemVariants} className="relative w-full flex justify-center -mt-8 mb-6 z-20">
+          <svg viewBox="0 0 600 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[115%] max-w-[550px] overflow-visible drop-shadow-md">
             <defs>
-              <path id="curve" d="M 120 180 Q 300 240 480 180" />
+              <path id="text-arc" d="M 100 115 Q 300 65 500 115" />
             </defs>
-            
-            {/* Left Folds */}
-            <path d="M 60 100 L 110 160 L 100 190 Z" fill="#D44D8E" />
+
             {/* Left Ribbon End */}
-            <path d="M 70 80 L 10 140 L 40 180 L 30 220 L 90 180 Z" fill="#FF78B9" />
+            <path d="M 20 90 L 140 90 L 140 180 L 20 180 L 60 135 Z" fill="#FF85B3" />
             
-            {/* Right Folds */}
-            <path d="M 540 100 L 490 160 L 500 190 Z" fill="#D44D8E" />
             {/* Right Ribbon End */}
-            <path d="M 530 80 L 590 140 L 560 180 L 570 220 L 510 180 Z" fill="#FF78B9" />
+            <path d="M 460 90 L 580 90 L 540 135 L 580 180 L 460 180 Z" fill="#FF85B3" />
 
-            {/* Main Thick Ribbon Curve */}
-            <path d="M 80 140 Q 300 220 520 140 L 480 200 Q 300 280 120 200 Z" fill="#FF78B9" />
+            {/* Left Fold */}
+            <path d="M 100 160 L 140 160 L 140 180 Z" fill="#D34E87" />
 
-            {/* AURORA Text with thick stroke matching "AYLA" reference */}
-            <text className="font-fredoka font-black uppercase" fontSize="88" letterSpacing="6" fill="#FF78B9" stroke="#FFF" strokeWidth="20" strokeLinejoin="round" paintOrder="stroke">
-              <textPath href="#curve" startOffset="50%" textAnchor="middle" alignmentBaseline="baseline">
+            {/* Right Fold */}
+            <path d="M 500 160 L 460 160 L 460 180 Z" fill="#D34E87" />
+
+            {/* Main Front Ribbon */}
+            <path d="M 100 70 Q 300 20 500 70 L 500 160 Q 300 110 100 160 Z" fill="#FFA5C7" />
+
+            {/* AURORA Text */}
+            <text className="font-fredoka font-black uppercase" fontSize="72" letterSpacing="8" fill="#FFFFFF" stroke="#D34E87" strokeWidth="12" strokeLinejoin="round" paintOrder="stroke">
+              <textPath href="#text-arc" startOffset="50%" textAnchor="middle" alignmentBaseline="middle">
                 AURORA
               </textPath>
             </text>
-            <text className="font-fredoka font-black uppercase" fontSize="88" letterSpacing="6" fill="#FF78B9">
-              <textPath href="#curve" startOffset="50%" textAnchor="middle" alignmentBaseline="baseline">
+            <text className="font-fredoka font-black uppercase" fontSize="72" letterSpacing="8" fill="#FFFFFF">
+              <textPath href="#text-arc" startOffset="50%" textAnchor="middle" alignmentBaseline="middle">
                 AURORA
               </textPath>
             </text>
