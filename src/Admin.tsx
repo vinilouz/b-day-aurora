@@ -5,16 +5,12 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/rsvps')
-      .then((res) => res.json())
-      .then((data) => {
-        setRsvps(data.rsvps || []);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
+    // Simula carregamento do banco de dados local
+    setTimeout(() => {
+      const data = JSON.parse(localStorage.getItem('rsvps') || '[]');
+      setRsvps(data);
+      setLoading(false);
+    }, 500);
   }, []);
 
   return (

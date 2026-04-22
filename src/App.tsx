@@ -76,24 +76,19 @@ export default function App() {
     if (!rsvpName.trim()) return;
 
     setIsSubmitting(true);
-    try {
-      const res = await fetch("/api/rsvp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: rsvpName }),
-      });
-      if (res.ok) {
-        setIsModalOpen(false);
-        setIsRsvped(true);
-        triggerConfetti();
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
+    
+    // Simula salvamento na rede (até criarmos um banco real como Firebase)
+    setTimeout(() => {
+      // Salva localmente no navegador por enquanto
+      const existing = JSON.parse(localStorage.getItem('rsvps') || '[]');
+      existing.push({ id: Date.now(), name: rsvpName, created_at: new Date().toISOString() });
+      localStorage.setItem('rsvps', JSON.stringify(existing));
+
       setIsSubmitting(false);
-    }
+      setIsModalOpen(false);
+      setIsRsvped(true);
+      triggerConfetti();
+    }, 800);
   };
 
   const containerVariants = {
