@@ -4,10 +4,10 @@
  */
 
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Music, 
-  MapPin, 
-  CheckCircle, 
+import {
+  Music,
+  MapPin,
+  CheckCircle,
   X,
   Send,
   Pointer
@@ -15,7 +15,7 @@ import {
 import React, { useState } from 'react';
 
 import imgTopCharacters from './assets/1.png';
-import imgBottomPlates from './assets/2.webp';
+import imgBottomPlates from './assets/2.png';
 
 /**
  * @license
@@ -27,9 +27,9 @@ const FloatingElement = ({ delay, x, y, duration, children }: { delay: number; x
     <motion.div
       initial={{ y: 0 }}
       animate={{ y: [-15, 15, -15] }}
-      transition={{ 
-        duration: duration, 
-        repeat: Infinity, 
+      transition={{
+        duration: duration,
+        repeat: Infinity,
         delay,
         ease: "easeInOut"
       }}
@@ -62,9 +62,9 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRsvped, setIsRsvped] = useState(false);
 
-  const eventDate = "25/07";
-  const eventTime = "18:00";
-  const locationLink = "https://maps.app.goo.gl/J7Vd5taK4qxuAV127";
+  const eventDate = "23/07";
+  const eventTime = "20:00";
+  const locationLink = "https://www.google.com/maps/search/?api=1&query=Av.+Manoel+Elisa+240,+Porto+Alegre,+91240-260";
 
   const triggerConfetti = () => {
     setShowConfetti(true);
@@ -76,7 +76,7 @@ export default function App() {
     if (!rsvpName.trim()) return;
 
     setIsSubmitting(true);
-    
+
     // Simula salvamento na rede (até criarmos um banco real como Firebase)
     setTimeout(() => {
       // Salva localmente no navegador por enquanto
@@ -104,7 +104,7 @@ export default function App() {
   };
 
   return (
-    <div 
+    <div
       className="min-h-screen bg-[#FFFDFE] font-sans overflow-x-hidden relative flex flex-col items-center py-6 px-3 select-none"
       style={{
         backgroundImage: "radial-gradient(#FFE0EC 2px, transparent 2px)",
@@ -112,13 +112,13 @@ export default function App() {
         backgroundPosition: "-14px -14px"
       }}
     >
-      
+
       {/* Decorative Background Elements aligned with the "Ayla" reference */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <SimpleBalloon color="bg-[#4FC3F7]" x="0%" y="2%" delay={0} />
         <SimpleBalloon color="bg-[#FF8A65]" x="8%" y="-5%" delay={1} />
         <SimpleBalloon color="bg-[#FFB74D]" x="-5%" y="10%" delay={2} />
-        
+
         <SimpleBalloon color="bg-[#F06292]" x="85%" y="0%" delay={1.5} />
         <SimpleBalloon color="bg-[#4DD0E1]" x="92%" y="-5%" delay={0.5} />
         <SimpleBalloon color="bg-[#BA68C8]" x="80%" y="12%" delay={2.5} />
@@ -130,29 +130,29 @@ export default function App() {
         <SimpleBalloon color="bg-[#4FC3F7]" x="80%" y="78%" delay={0.5} />
 
         <FloatingElement delay={0} x="20%" y="8%" duration={4}>
-           <Music size={32} className="text-[#F06292] opacity-80 rotate-12" />
+          <Music size={32} className="text-[#F06292] opacity-80 rotate-12" />
         </FloatingElement>
         <FloatingElement delay={1} x="75%" y="6%" duration={5}>
-           <Music size={28} className="text-[#FFB74D] opacity-80 -rotate-12" />
+          <Music size={28} className="text-[#FFB74D] opacity-80 -rotate-12" />
         </FloatingElement>
         <FloatingElement delay={2} x="8%" y="45%" duration={4.5}>
-           <svg width="40" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#FFD54F] opacity-90"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+          <svg width="40" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#FFD54F] opacity-90"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
         </FloatingElement>
         <FloatingElement delay={2.5} x="85%" y="60%" duration={5.5}>
-           <Music size={40} className="text-[#FFB74D] opacity-80 rotate-12" />
+          <Music size={40} className="text-[#FFB74D] opacity-80 rotate-12" />
         </FloatingElement>
       </div>
 
-      <motion.div 
-        variants={containerVariants} 
-        initial="hidden" 
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
         animate="show"
         className="w-full max-w-[480px] relative z-20 flex flex-col items-center"
       >
-        
+
         {/* Top Characters Image */}
         <motion.div variants={itemVariants} className="w-full flex justify-center items-end relative z-10 pt-4 pb-2">
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             className="relative w-full flex justify-center"
@@ -167,12 +167,12 @@ export default function App() {
             <defs>
               <path id="curve" d="M 120 180 Q 300 240 480 180" />
             </defs>
-            
+
             {/* Left Folds */}
             <path d="M 60 100 L 110 160 L 100 190 Z" fill="#D44D8E" />
             {/* Left Ribbon End */}
             <path d="M 70 80 L 10 140 L 40 180 L 30 220 L 90 180 Z" fill="#FF78B9" />
-            
+
             {/* Right Folds */}
             <path d="M 540 100 L 490 160 L 500 190 Z" fill="#D44D8E" />
             {/* Right Ribbon End */}
@@ -217,21 +217,19 @@ export default function App() {
 
         {/* Side-by-side Button Section */}
         <motion.div variants={itemVariants} className="w-full flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-4 px-4 mb-3 relative z-20">
-          
+
           {/* RSVP Button */}
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => !isRsvped && setIsModalOpen(true)}
-            className={`w-full sm:flex-1 max-w-[280px] sm:max-w-[210px] h-[75px] rounded-full flex items-center p-1.5 shadow-md transition-all overflow-hidden border-[3px] ${
-              isRsvped 
-                ? 'bg-[#FF78B9] border-[#FF78B9] shadow-pink-200' 
+            className={`w-full sm:flex-1 max-w-[280px] sm:max-w-[210px] h-[75px] rounded-full flex items-center p-1.5 shadow-md transition-all overflow-hidden border-[3px] ${isRsvped
+                ? 'bg-[#FF78B9] border-[#FF78B9] shadow-pink-200'
                 : 'bg-gradient-to-br from-[#FFFDFE] to-pink-50 border-[#FF78B9] hover:bg-pink-100'
-            }`}
+              }`}
           >
-            <div className={`w-[54px] h-[54px] rounded-full flex items-center justify-center shrink-0 transition-all ${
-              isRsvped ? 'bg-white text-[#FF78B9]' : 'bg-[#FF78B9] text-white'
-            }`}>
+            <div className={`w-[54px] h-[54px] rounded-full flex items-center justify-center shrink-0 transition-all ${isRsvped ? 'bg-white text-[#FF78B9]' : 'bg-[#FF78B9] text-white'
+              }`}>
               <CheckCircle size={32} strokeWidth={2.5} />
             </div>
             <div className="flex flex-col ml-2.5 text-left flex-1 justify-center">
@@ -264,7 +262,7 @@ export default function App() {
         </motion.div>
 
         {/* Animated Hand Cursor Hint */}
-        <motion.div 
+        <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="text-[#ECA11A] flex justify-center w-full mb-6 relative z-10 opacity-80"
@@ -274,7 +272,7 @@ export default function App() {
 
         {/* Bottom Character Plates Image */}
         <motion.div variants={itemVariants} className="w-full flex justify-center px-4 relative z-20 pb-12">
-           <img src={imgBottomPlates} alt={`Data: ${eventDate} às ${eventTime}`} className="w-full max-w-[420px] object-contain drop-shadow-xl" />
+          <img src={imgBottomPlates} alt={`Data: ${eventDate} às ${eventTime}`} className="w-full max-w-[420px] object-contain drop-shadow-xl" />
         </motion.div>
       </motion.div>
 
@@ -294,13 +292,13 @@ export default function App() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="bg-white max-w-sm w-full rounded-[2rem] p-6 shadow-2xl relative border-[4px] border-[#FF78B9]"
             >
-              <button 
+              <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 text-gray-400 hover:text-[#FF78B9] transition-colors"
               >
                 <X size={24} strokeWidth={3} />
               </button>
-              
+
               <div className="text-center mb-6 mt-2">
                 <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-pink-200">
                   <CheckCircle size={32} className="text-[#FF78B9]" />
@@ -310,7 +308,7 @@ export default function App() {
               </div>
 
               <form onSubmit={handleRsvpSubmit} className="flex flex-col gap-4">
-                <input 
+                <input
                   type="text"
                   placeholder="Seu nome"
                   required
@@ -318,7 +316,7 @@ export default function App() {
                   onChange={(e) => setRsvpName(e.target.value)}
                   className="w-full px-5 py-4 rounded-xl border-2 border-gray-200 focus:border-[#FF78B9] focus:ring-4 focus:ring-pink-100 outline-none transition-all font-medium text-gray-700 text-lg text-center"
                 />
-                
+
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -348,9 +346,9 @@ export default function App() {
               <motion.div
                 key={i}
                 initial={{ x: 0, y: 0, scale: 0 }}
-                animate={{ 
-                  x: (Math.random() - 0.5) * 800, 
-                  y: ((Math.random() - 0.5) * 800) - 100, 
+                animate={{
+                  x: (Math.random() - 0.5) * 800,
+                  y: ((Math.random() - 0.5) * 800) - 100,
                   scale: Math.random() * 1.5 + 0.5,
                   rotate: Math.random() * 360,
                   opacity: [1, 1, 0]
