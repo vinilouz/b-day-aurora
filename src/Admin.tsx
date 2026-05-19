@@ -1,20 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 export default function Admin() {
   const [rsvps, setRsvps] = useState<{ id: number; name: string; created_at: string }[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/api/rsvps')
-      .then((res) => res.json())
-      .then((data) => {
-        setRsvps(data.rsvps || []);
+    const fetchData = async () => {
+      try {
+        const removeName = searchParams.get('remove');
+        if (removeName) {
+          await fetch('/api/rsvps', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: removeName })
+          });
+          navigate('/admin', { replace: true });
+        }
+
+        const res = await fetch('/api/rsvps');
+        const payload = await res.json();
+        
+        if (res.ok) {
+          setRsvps(Array.isArray(payload) ? payload : []);
+        } else if (payload.error === 'STORAGE_NOT_CONFIGURED') {
+          alert("Configuração Pendente: Vá na Vercel > Storage > clique em 'Redis' ou 'Upstash' para ativar o banco gratuito.");
+        } else {
+           console.error("Error fetching data");
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
         setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []);
+      }
+    };
+    fetchData();
+  }, [searchParams, navigate]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans">
@@ -23,7 +46,7 @@ export default function Admin() {
           <h1 className="text-2xl font-bold">Lista de Presença</h1>
           <p className="opacity-80">Painel de administração - Nomes confirmados</p>
         </div>
-
+        
         <div className="p-6">
           {loading ? (
             <div className="text-center py-10 opacity-60">Carregando...</div>
