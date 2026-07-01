@@ -64,7 +64,7 @@ export default function App() {
 
   const eventDate = "23/07";
   const eventTime = "20:00";
-  const locationLink = "https://www.google.com/maps/search/?api=1&query=Av.+Manoel+Elisa+240,+Porto+Alegre,+91240-260";
+  const locationLink = "https://www.google.com/maps/search/?api=1&query=Av.+Manoel+Elias+240,+Porto+Alegre,+91240-260";
 
   const triggerConfetti = () => {
     setShowConfetti(true);
@@ -240,8 +240,8 @@ export default function App() {
             whileTap={{ scale: 0.95 }}
             onClick={() => !isRsvped && setIsModalOpen(true)}
             className={`w-full sm:flex-1 max-w-[280px] sm:max-w-[210px] h-[75px] rounded-full flex items-center p-1.5 shadow-md transition-all overflow-hidden border-[3px] ${isRsvped
-                ? 'bg-[#FF78B9] border-[#FF78B9] shadow-pink-200'
-                : 'bg-gradient-to-br from-[#FFFDFE] to-pink-50 border-[#FF78B9] hover:bg-pink-100'
+              ? 'bg-[#FF78B9] border-[#FF78B9] shadow-pink-200'
+              : 'bg-gradient-to-br from-[#FFFDFE] to-pink-50 border-[#FF78B9] hover:bg-pink-100'
               }`}
           >
             <div className={`w-[54px] h-[54px] rounded-full flex items-center justify-center shrink-0 transition-all ${isRsvped ? 'bg-white text-[#FF78B9]' : 'bg-[#FF78B9] text-white'
